@@ -34,13 +34,13 @@ current_content = ''
 # Check for existing keys
 
 if append:
-    ofile = codecs.open(output, encoding='utf-16')
+    ofile = codecs.open(output, encoding='utf-8')
     opattern = re.compile(r'"(.*)"\s*=\s*".*";')
     current_content = ofile.read()
 
     if not unsafe_mode:
         #create backup
-        backup_file = codecs.open(output+'.backup', 'w+', encoding='utf-16')
+        backup_file = codecs.open(output+'.backup', 'w+', encoding='utf-8')
         backup_file.write(current_content)
 
     for (key) in re.findall(opattern, current_content):
@@ -51,24 +51,35 @@ if append:
 # Search files for NSLocalizedString macro
 
 localized_strings = ''
-pattern = re.compile(r'NSLocalizedString\(\s*@"([^"]*)",\s*((?:@"[^"]*"|nil)\s*)\)')
+pattern = re.compile(r'NSLocalizedString\(\s*@"([^"]*)",\s*@"((?:[^"]*)\s*)"\)')
+swiftPattern = re.compile(r'NSLocalizedString\(\s*"([^"]*)",\scomment:\s*"((?:[^"]*)\s*)"\)')
 new_keys = []
 
 for dirpath, dirnames, filenames in os.walk(path):
-    for filename in [f for f in filenames if f.endswith(".m")]:
-        file = open(os.path.join(dirpath, filename), 'r')
+    for filename in [f for f in filenames if f.endswith(".m") or f.endswith(".swift")]:
+		file = open(os.path.join(dirpath, filename), 'r')
+		
+		fread = file.read()
+		
+		for (key, note) in re.findall(pattern, fread):
 
-        for (key, note) in re.findall(pattern, file.read()):
+			if key not in existed_keys:
+				n = 'No comment provided' if note == 'nil' else note
+				current_content += '\n/* ' + n + ' */\n"' + key + '" = "";\n'
+				new_keys.append(key)
+				existed_keys.append(key)
 
-            if key not in existed_keys:
-                n = 'No comment provided' if note == 'nil' else note[2:][:-1]
-                current_content += '\n/* ' + n + ' */\n"' + key + '" = "";\n'
-                new_keys.append(key)
-                existed_keys.append(key)
+		for (key, note) in re.findall(swiftPattern, fread):
 
+			if key not in existed_keys:
+				n = 'No comment provided' if note == 'nil' else note
+				current_content += '\n/* ' + n + ' */\n"' + key + '" = "";\n'
+				new_keys.append(key)
+				existed_keys.append(key)
+            
 # Write new file with changes
 
-ofile = codecs.open(output, mode='w+', encoding='utf-16')
+ofile = codecs.open(output, mode='w+', encoding='utf-8')
 ofile.write(current_content)
 
 # Report what's happened
