@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  InternationalProject
+
+  Created by Aleš Kocur on 27/04/16.
+  Copyright © 2016 Aleš Kocur. All rights reserved.
+*/
+
+/* Navigation bar title of login controller */
+"login.navigation_title" = "Guten tag Login";
+
+/* Navigation bar title of my ViewController */
+"viewcontroller.navigation_title" = "Guten tag ViewController";
