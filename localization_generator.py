@@ -34,7 +34,7 @@ current_content = ''
 # Check for existing keys
 
 if append:
-    ofile = codecs.open(output, encoding='utf-8')
+    ofile = codecs.open(output)
     opattern = re.compile(r'"(.*)"\s*=\s*".*";')
     current_content = ofile.read()
 
@@ -58,9 +58,9 @@ new_keys = []
 for dirpath, dirnames, filenames in os.walk(path):
     for filename in [f for f in filenames if f.endswith(".m") or f.endswith(".swift")]:
 		file = open(os.path.join(dirpath, filename), 'r')
-		
+
 		fread = file.read()
-		
+
 		for (key, note) in re.findall(pattern, fread):
 
 			if key not in existed_keys:
@@ -76,10 +76,10 @@ for dirpath, dirnames, filenames in os.walk(path):
 				current_content += '\n/* ' + n + ' */\n"' + key + '" = "";\n'
 				new_keys.append(key)
 				existed_keys.append(key)
-            
+
 # Write new file with changes
 
-ofile = codecs.open(output, mode='w+', encoding='utf-8')
+ofile = codecs.open(output, mode='w+')
 ofile.write(current_content)
 
 # Report what's happened
