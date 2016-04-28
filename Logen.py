@@ -7,7 +7,6 @@ __author__ = 'Ales Oskar Kocur'
 path = '.'
 output = 'Localizable.strings'
 append = False
-unsafe_mode = False
 
 # Parse arguments
 try:
@@ -26,8 +25,6 @@ for opt, arg in opts:
         output = arg
     elif opt in ("-a", "--append"):
         append = True
-    elif opt in ("-u", "--unsafe"):
-        unsafe_mode = True
 
 # Check for existing keys
 
