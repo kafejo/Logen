@@ -1,8 +1,8 @@
-# LocalizationGenerator
+# Logen - Localization generator
 
 ## Usage
 
-    python localization_generator.py -a -i <inputdirectory> -o <outputfile>
+    python Logen.py -a -i <inputdirectory> -o <outputfile>
   
 ## Options
 **-a** append to the end of the output file

@@ -14,7 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.title = NSLocalizedString("viewcontroller.navigation_title", comment: "Navigation bar title of my ViewController")
+        title = NSLocalizedString("viewcontroller.navigation_title", comment: "Navigation bar title of my ViewController")
+        title = NSLocalizedString("viewcontroller.navigation_title2", comment: "")
+        title = NSLocalizedString("viewcontroller.navigation_title3", bundle: NSBundle.mainBundle(), comment: "Navigation bar title")
     }
 
     override func didReceiveMemoryWarning() {
