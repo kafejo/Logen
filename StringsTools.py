@@ -1,5 +1,6 @@
-
-import os, re, codecs
+import os
+import re
+import codecs
 
 
 class StringsReaderWriter:
@@ -41,7 +42,7 @@ class StringsParser:
     def __init__(self, dir_path):
         self.dir_path = dir_path
 
-    def get_keys_values(self):
+    def get_keys_and_comments(self):
         found_items = []
 
         objc_pattern = re.compile(r'NSLocalizedString\(\s*@"([^"]*)",\s*@"((?:[^"]*)\s*)"\)')

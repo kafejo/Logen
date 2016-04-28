@@ -39,20 +39,20 @@ if append:
 
 # Search files for NSLocalizedString macro
 
-items = parser.get_keys_values()
+items = parser.get_keys_and_comments()
 formatted_content = ''
-new_key_comment = []
+new_key_and_comment = []
 
-for (key, note) in items:
+for (key, comment) in items:
     if key not in existing_keys:
-        new_key_comment.append((key, note))
+        new_key_and_comment.append((key, comment))
 
 # Write new file with changes
-reader_writer.write(new_key_comment, append)
+reader_writer.write(new_key_and_comment, append)
 
 # Report what's happened
 
-if len(new_key_comment) == 0:
+if len(new_key_and_comment) == 0:
     print("Done! There are no new keys.")
 else:
-    print("Done! New keys: ", new_key_comment)
+    print("Done! New keys: ", ', '.join([key for (key, note) in new_key_and_comment]))
