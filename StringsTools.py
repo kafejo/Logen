@@ -17,7 +17,6 @@ class StringsReaderWriter:
 
         for (key) in re.findall(strings_pattern, self.current_content):
             existing_keys.append(key)
-        print('Existing keys:', existing_keys)
 
         return existing_keys
 
