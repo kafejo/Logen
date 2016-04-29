@@ -15,7 +15,7 @@ You find yourself in a stage of project when there are localizations and you typ
 
 **-i** input directory, subdirectories will be scanned too, '.' if not given
 
-**-o** output file, default.strings if not given
+**-o** output file, Localizable.strings if not given
 
 **-v** or **--verbose** enables verbose mode
 
@@ -64,6 +64,8 @@ Result
 ## TODO
 - Scan for multiple languages at once
 - Updating comments of current keys
+- Multiple tables support
+- Create PyPI package for easy installation
 
 ## Author
 Aleš Kocur, ales@thefuntasty.com
