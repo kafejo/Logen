@@ -1,8 +1,14 @@
 # Logen - Localization generator
+Tool for lightweight continuous internationalization of Swift or Objective-C projects. 
+
+## Use case
+You find yourself in a stage of project when there are localizations and you typically have spreadsheet with localizations or you want to translate them by yourself. You added new controller and there are new NSLocalizationString() functions (or macros in obj-c case) and you want them to translate so you have to scan your newly added code and add keys you found in all versions of your Localizable.strings file.
+
+**TLDR; Logen scans your code for NSLocalizationString keys and comments and appends new (or rewrites current) to your Localizable.strings**
 
 ## Usage
 
-    python Logen.py -a -i <inputdirectory> -o <outputfile>
+    python3 Logen.py -a -i <inputdirectory> -o <outputfile> -v
 
 ## Options
 **-a** append to the end of the output file
@@ -11,7 +17,8 @@
 
 **-o** output file, default.strings if not given
 
-**-u** unsafe mode, it won't create backup file 
+**-v** or **--verbose** enables verbose mode
+
 
 ## Example
 
@@ -53,3 +60,13 @@ Result
 /* Navigation bar title */
 "viewcontroller.navigation_title3" = "";
 ```
+
+## TODO
+- Scan for multiple languages at once
+- Updating comments of current keys
+
+## Author
+Aleš Kocur, ales@thefuntasty.com
+
+## Licence
+Logen is available under the MIT license. See the LICENSE file for more info.
