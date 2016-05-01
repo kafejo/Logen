@@ -3,11 +3,12 @@ import re
 import codecs
 
 
-class StringsReaderWriter:
-    def __init__(self, strings_file_path):
+class StringsFile:
+    def __init__(self, strings_file_path, language):
         self.strings_file_path = strings_file_path
+        self.language = language
         # Load current content from file
-        f = codecs.open(strings_file_path)
+        f = codecs.open(strings_file_path, encoding='utf-8')
         self.current_content = f.read()
         f.close()
 
@@ -28,7 +29,7 @@ class StringsReaderWriter:
             formatted_content += '\n/* ' + n + ' */\n"' + key + '" = "";\n'
 
         if append:
-            f = codecs.open(self.strings_file_path, mode='a')
+            f = codecs.open(self.strings_file_path, mode='a', encoding='utf-8')
             f.write(formatted_content)
         else:
             f = codecs.open(self.strings_file_path, mode='w+')
@@ -49,7 +50,7 @@ class StringsParser:
         swift_pattern = re.compile(r'NSLocalizedString\(\s*"([^"]*)",(?:(?!tableName).)*comment:\s*"((?:[^"]*)*)"\)')
 
         for path, dir_names, file_names in os.walk(self.dir_path):
-
+            
             for filename in [f for f in file_names if f.endswith(".m") or f.endswith(".swift")]:
                 file = open(os.path.join(path, filename), 'r')
 
