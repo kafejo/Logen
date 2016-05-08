@@ -45,7 +45,7 @@ class StringsParser:
     def get_keys_and_comments(self):
         found_items = []
 
-        objc_pattern = re.compile(r'NSLocalizedString\(\s*@"([^"]*)",\s*@"((?:[^"]*)\s*)"\)')
+        objc_pattern = re.compile(r'NSLocalizedString\(\s*@"([^"]*?)",\s*?@"((?:[^"]*?)\s*?)"\)')
         # This regex matches the NSLocalizedString function and its key and comment parameters
         swift_pattern = re.compile(r'NSLocalizedString\(\s*"([^"]*?)",(?:(?!tableName).)*?comment:\s*?"((?:[^"]*?)*?)"\)')
 
