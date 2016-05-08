@@ -47,10 +47,10 @@ class StringsParser:
 
         objc_pattern = re.compile(r'NSLocalizedString\(\s*@"([^"]*)",\s*@"((?:[^"]*)\s*)"\)')
         # This regex matches the NSLocalizedString function and its key and comment parameters
-        swift_pattern = re.compile(r'NSLocalizedString\(\s*"([^"]*)",(?:(?!tableName).)*comment:\s*"((?:[^"]*)*)"\)')
+        swift_pattern = re.compile(r'NSLocalizedString\(\s*"([^"]*?)",(?:(?!tableName).)*?comment:\s*?"((?:[^"]*?)*?)"\)')
 
         for path, dir_names, file_names in os.walk(self.dir_path):
-            
+
             for filename in [f for f in file_names if f.endswith(".m") or f.endswith(".swift")]:
                 file = open(os.path.join(path, filename), 'r')
 
