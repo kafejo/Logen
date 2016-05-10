@@ -8,10 +8,10 @@ You find yourself in a stage of project when there are localizations and you typ
 
 ## Usage
 
-    python3 Logen.py -a -i <inputdirectory> -o <outputfile> -v
+    python3 Logen.py -i <inputdirectory> -o <outputfile> -r -v 
 
 ## Options
-**-a** append to the end of the output file
+**-r** rewrites the output file (not append)
 
 **-i** input directory, subdirectories will be scanned too, '.' if not given
 
@@ -41,9 +41,9 @@ title = NSLocalizedString("viewcontroller.navigation_title3", bundle: NSBundle.m
 
 We run Logen in order to update our Localizable.strings file
 
-    python3 Logen.py -a -i InternationalProject/InternationalProject -o InternationalProject/InternationalProject/Base.lproj/Localizable.strings
+    python3 Logen.py -i InternationalProject/InternationalProject 
 
-Logen will update the Base language's Localizable.strings by appending missing keys.
+Logen will update all language's Localizable.strings by appending missing keys.
 
 Result
 
@@ -62,7 +62,7 @@ Result
 ```
 
 ## TODO
-- Scan for multiple languages at once
+- ~Scan for multiple languages at once~
 - Updating comments of current keys
 - Multiple tables support
 - Create PyPI package for easy installation
