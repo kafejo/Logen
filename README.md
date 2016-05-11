@@ -62,7 +62,7 @@ Result
 ```
 
 ## TODO
-- ~Scan for multiple languages at once~
+- ~~Scan for multiple languages at once~~
 - Updating comments of current keys
 - Multiple tables support
 - Create PyPI package for easy installation
